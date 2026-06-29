@@ -5,14 +5,60 @@ test('First Playwright test', async ({browser})=>
     //playwright code -
     const context =  await browser.newContext();
     const page = await context.newPage();
+
+    const userName = page.locator("#username");
+    const password = page.locator("[type='password']");
+    const signInButton = page.locator("#signInBtn");
+    const cardTitles = page.locator(".card-body a");
+    const dropdown = await page.locator("select.form-control");
+    const radioButton = await page.locator("span.checkmark");
+
+    
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     console.log(await page.title());
-});
+    await userName.fill("rahulshetty");
+    await password.fill("Learning");
+    await signInButton.click();
+    console.log(await page.locator("[style*='block']").textContent());
+    await expect(page.locator("[style*='block']")).toContainText("Incorrect");
 
-test('Page Playwright test', async ({page})=>
-{ 
-    await page.goto("https://google.com");
-    console.log(await page.title());
-    await expect(page).toHaveTitle("Google");
+    await userName.fill("");
+    await userName.fill("rahulshettyacademy");
+    await password.fill("");
+    await password.fill("Learning@830$3mK2");
+
+    //UI COntrols - SELECT, CHECKBOX, RADIO BUTTONS
+    await dropdown.selectOption("consult");
+    //await page.pause();  - inspector for debug
+
+    await radioButton.last().click();
+    await page.locator("#okayBtn").click();
+    console.log(await radioButton.last().isChecked());
+    await expect(radioButton.last()).toBeChecked();
+
+    await page.locator("#terms").click();
+    await expect(page.locator("#terms")).toBeChecked();
+    await page.locator("#terms").uncheck();
+    expect(await page.locator("#terms").isChecked()).toBeFalsy();
+    await page.pause(); //- inspector for debug
+
+
+    await signInButton.click();
+
+    console.log(await cardTitles.first().textContent());
+    console.log(await cardTitles.nth(1).textContent());
+
+    const allTitles = await cardTitles.allTextContents();
+    console.log(allTitles);
+
+
+
+    
+
+    
+    
+
+
+
 
 });
