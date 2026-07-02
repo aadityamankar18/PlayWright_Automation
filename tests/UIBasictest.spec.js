@@ -84,7 +84,7 @@ test.only('Child Window Handling', async ({browser})=>
 
     await page.locator("#username").fill(domainName);
     await page.locator("#username").textContent();
-    await page.pause();
+    // await page.pause();
     console.log(await page.locator("#username").textContent());
     
 
