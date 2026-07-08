@@ -1,60 +1,48 @@
 const {test, expect} = require("@playwright/test");
+const { ObjectRepository } = require("../wrapperFunction/objectRepository");
 
 test('First Playwright test', async ({browser})=>
 { 
     //playwright code -
     const context =  await browser.newContext();
     const page = await context.newPage();
-
-    const userName = page.locator("#username");
-    const password = page.locator("[type='password']");
-    const signInButton = page.locator("#signInBtn");
-    const cardTitles = page.locator(".card-body a");
-    const dropdown = await page.locator("select.form-control");
-    const radioButton = await page.locator("span.checkmark");
-    const documentLink = await page.locator("[href*='documents-request']");
+    const repo = new ObjectRepository(page);
 
 
-    await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+    await repo.gotoPractice();
     console.log(await page.title());
-    await userName.fill("rahulshetty");
-    await password.fill("Learning");
-    await signInButton.click();
-    console.log(await page.locator("[style*='block']").inputValue());
-    await expect(page.locator("[style*='block']")).toContainText("Incorrect");
+    await repo.userName.fill("rahulshetty");
+    await repo.passwordPractice.fill("Learning");
+    await repo.signInButton.click();
+    console.log(await repo.incorrectMsg.inputValue());
+    await expect(repo.incorrectMsg).toContainText("Incorrect");
 
-    await userName.fill("");
-    await userName.fill("rahulshettyacademy");
-    await password.fill("");
-    await password.fill("Learning@830$3mK2");
+    await repo.userName.fill("");
+    await repo.userName.fill("rahulshettyacademy");
+    await repo.passwordPractice.fill("");
+    await repo.passwordPractice.fill("Learning@830$3mK2");
 
     //UI COntrols - SELECT, CHECKBOX, RADIO BUTTONS
-    await dropdown.selectOption("consult");
-    //await page.pause();  - inspector for debug
+    await repo.dropdown.selectOption("consult");
 
-    await radioButton.last().click();
-    await page.locator("#okayBtn").click();
-    console.log(await radioButton.last().isChecked());
-    await expect(radioButton.last()).toBeChecked();
+    await repo.radioButton.last().click();
+    await repo.okayBtn.click();
+    console.log(await repo.radioButton.last().isChecked());
+    await expect(repo.radioButton.last()).toBeChecked();
 
-    await page.locator("#terms").click();
-    await expect(page.locator("#terms")).toBeChecked();
-    await page.locator("#terms").uncheck();
-    expect(await page.locator("#terms").isChecked()).toBeFalsy();
+    await repo.terms.click();
+    await expect(repo.terms).toBeChecked();
+    await repo.terms.uncheck();
+    expect(await repo.terms.isChecked()).toBeFalsy();
 
+    await expect(repo.documentLink).toHaveAttribute("class", "blinkingText");
 
-    await expect (documentLink).toHaveAttribute("class", "blinkingText");
+    await repo.signInButton.click();
 
+    console.log(await repo.cardTitlesA.first().textContent());
+    console.log(await repo.cardTitlesA.nth(1).textContent());
 
-    //await page.pause(); //- inspector for debug
-
-
-    await signInButton.click();
-
-    console.log(await cardTitles.first().textContent());
-    console.log(await cardTitles.nth(1).textContent());
-
-    const allTitles = await cardTitles.allTextContents();
+    const allTitles = await repo.cardTitlesA.allTextContents();
     console.log(allTitles);
 
 
@@ -64,14 +52,13 @@ test.only('Child Window Handling', async ({browser})=>
 {
     const context = await browser.newContext();
     const page = await context.newPage();
-    await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
-
-    const documentLink = await page.locator("[href*='documents-request']");
+    const repo = new ObjectRepository(page);
+    await repo.gotoPractice();
 
 
     const [newPage] = await Promise.all([
         context.waitForEvent('page'),  //listen for any new page pending, rejected, fulfilled.
-        documentLink.click(),
+        repo.documentLink.click(),
   
     ])   // new page is opened.
 
@@ -82,10 +69,10 @@ test.only('Child Window Handling', async ({browser})=>
     console.log(domainName);
 
 
-    await page.locator("#username").fill(domainName);
-    await page.locator("#username").textContent();
+    await repo.userName.fill(domainName);
+    await repo.userName.textContent();
     // await page.pause();
-    console.log(await page.locator("#username").textContent());
+    console.log(await repo.userName.textContent());
     
 
     
