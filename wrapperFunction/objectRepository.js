@@ -4,7 +4,7 @@ class ObjectRepository {
 
         //Credentials
         this.email = "aadityamankar18@gmail.com";
-        this.userPassW= "Pass@123";
+        this.userPassW = "Pass@123";
 
 
 
@@ -37,7 +37,6 @@ class ObjectRepository {
         this.submitButton = page.getByRole("button", {name: "Submit"});
         this.submitMsg = page.getByText("Success! The Form has been submitted successfully!.");
         this.shopLink = page.getByRole("link", {name: "Shop"});
-        this.cardTitles = page.locator("app-card");
         this.cardTitlesAddButton = page.locator("app-card").filter({hasText: "Nokia Edge"}).getByRole("button", {name : "Add "});
 
         
