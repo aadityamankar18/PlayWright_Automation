@@ -4,7 +4,7 @@ class ObjectRepository {
 
         //Credentials
         this.email = "aadityamankar18@gmail.com";
-        this.userPassword = "Pass@123";
+        this.userPassW= "Pass@123";
 
 
 
