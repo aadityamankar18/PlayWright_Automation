@@ -1,7 +1,7 @@
 const {test, expect} = require("@playwright/test");
 const { ObjectRepository } = require("../wrapperFunction/objectRepository");
 
-test.only('Playwright Special Locators', async ({browser})=>
+test('Playwright Special Locators', async ({browser})=>
 { 
     //playwright code -
     const context =  await browser.newContext();
