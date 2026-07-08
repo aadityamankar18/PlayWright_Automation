@@ -29,6 +29,20 @@ class ObjectRepository {
         this.summaryID = page.locator(".col-text");
 
 
+        // Practice page locators - getByLabel
+        this.checkIceCreamCheckbox = page.getByLabel("Check me out if you Love IceCreams!");
+        this.employedRadioButton = page.getByLabel("Employed");
+        this.genderDropdown = page.getByLabel("Gender");
+        this.userPassword = page.getByPlaceholder("Password");
+        this.submitButton = page.getByRole("button", {name: "Submit"});
+        this.submitMsg = page.getByText("Success! The Form has been submitted successfully!.");
+        this.shopLink = page.getByRole("link", {name: "Shop"});
+        this.cardTitles = page.locator("app-card");
+        this.cardTitlesAddButton = page.locator("app-card").filter({hasText: "Nokia Edge"}).getByRole("button", {name : "Add "});
+
+        
+
+
         // Practice login page locators
         this.userName = page.locator("#username");
         this.passwordPractice = page.locator("[type='password']");
@@ -44,6 +58,10 @@ class ObjectRepository {
 
     async gotoClient() {
         await this.page.goto("https://rahulshettyacademy.com/client/#/auth/login");
+    }
+
+    async gotoAngularPractice() {
+        await this.page.goto("https://rahulshettyacademy.com/angularpractice/");
     }
 
     async gotoPractice() {
