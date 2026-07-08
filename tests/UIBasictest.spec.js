@@ -14,8 +14,9 @@ test('First Playwright test', async ({browser})=>
     await repo.userName.fill("rahulshetty");
     await repo.passwordPractice.fill("Learning");
     await repo.signInButton.click();
-    console.log(await repo.incorrectMsg.inputValue());
-    await expect(repo.incorrectMsg).toContainText("Incorrect");
+    const incorrectMsgValue = await repo.incorrectMsg.inputValue();
+    console.log(incorrectMsgValue);
+    await expect(incorrectMsgValue).toContainText("Incorrect");
 
     await repo.userName.fill("");
     await repo.userName.fill("rahulshettyacademy");

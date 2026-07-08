@@ -50,7 +50,7 @@ class ObjectRepository {
         this.dropdown = page.locator("select.form-control");
         this.radioButton = page.locator("span.checkmark");
         this.documentLink = page.locator("[href*='documents-request']");
-        this.incorrectMsg = page.locator("[style*='block']");
+        this.incorrectMsgValue = page.locator("[style*='block']");
         this.okayBtn = page.locator("#okayBtn");
         this.terms = page.locator("#terms");
     }
