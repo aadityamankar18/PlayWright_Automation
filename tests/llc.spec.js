@@ -24,10 +24,4 @@ test.only('Playwright Special Locators', async ({browser})=>
 
 
 
-
-
-
-
-
-
 });
