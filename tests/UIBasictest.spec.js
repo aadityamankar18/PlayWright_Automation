@@ -48,7 +48,7 @@ test('First Playwright test', async ({browser})=>
 
 });
 
-test.only('Child Window Handling', async ({browser})=>
+test('Child Window Handling', async ({browser})=>
 {
     const context = await browser.newContext();
     const page = await context.newPage();
