@@ -8,26 +8,28 @@ test('First Playwright test', async ({browser})=>
     const page = await context.newPage();
     const repo = new ObjectRepository(page);
 
-
     await repo.gotoPractice();
     console.log(await page.title());
     await repo.userName.fill("rahulshetty");
     await repo.passwordPractice.fill("Learning");
     await repo.signInButton.click();
-    const incorrectMsgValue = await repo.incorrectMsgValue.inputValue();
-    console.log(incorrectMsgValue);
-    await expect(incorrectMsgValue).toContainText("Incorrect");
 
+    await expect(repo.err).toBeVisible();
+    console.log(await repo.err.textContent());
+    await expect(repo.err).toContainText("Incorrect");
+ 
     await repo.userName.fill("");
     await repo.userName.fill("rahulshettyacademy");
     await repo.passwordPractice.fill("");
     await repo.passwordPractice.fill("Learning@830$3mK2");
+    await repo.signInButton.click();
 
     //UI COntrols - SELECT, CHECKBOX, RADIO BUTTONS
     await repo.dropdown.selectOption("consult");
 
     await repo.radioButton.last().click();
     await repo.okayBtn.click();
+
     console.log(await repo.radioButton.last().isChecked());
     await expect(repo.radioButton.last()).toBeChecked();
 
