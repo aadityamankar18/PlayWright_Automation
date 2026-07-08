@@ -12,7 +12,7 @@ test.only('First Playwright test', async ({browser})=>
     await repo.gotoClient();
     console.log(await page.title());
     await repo.userEmail.fill(repo.email);
-    await repo.password.fill(repo.userPassword);
+    await repo.password.fill(repo.userPassW);
     await repo.loginBtn.click();
 
     await repo.cardTitles.first().waitFor();
