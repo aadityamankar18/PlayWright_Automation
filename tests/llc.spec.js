@@ -18,7 +18,6 @@ test('Playwright Special Locators', async ({browser})=>
     await repo.submitButton.click();
     await repo.submitMsg.isVisible();
     await repo.shopLink.click();
-
     await repo.cardTitlesAddButton.click();
 
 

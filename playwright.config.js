@@ -1,21 +1,27 @@
 // @ts-check
-import { defineConfig, devices } from '@playwright/test';
-   /** 
+const { defineConfig } = require('@playwright/test');
+
+/**
  * @see https://playwright.dev/docs/test-configuration
  */
- 
-const config =({
+module.exports = defineConfig({
   testDir: './tests',
+
   timeout: 30 * 1000,
-  expect : {
+
+  expect: {
     timeout: 50 * 1000,
   },
-  reporter: 'html',
+
+  reporter: [
+    ['html'],
+    ['junit', { outputFile: 'test-results/results.xml' }]
+  ],
 
   use: {
-      browserName: 'chromium',
-      headless : false,
+    browserName: 'chromium',
+
+    // Run headless in Jenkins
+    headless: true,
   },
 });
-
-module.exports = config
