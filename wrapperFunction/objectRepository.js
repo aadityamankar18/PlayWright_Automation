@@ -28,6 +28,8 @@ class ObjectRepository {
         this.rows = page.locator("tbody tr");
         this.summaryID = page.locator(".col-text");
 
+        
+
 
         // Practice page locators - getByLabel
         this.checkIceCreamCheckbox = page.getByLabel("Check me out if you Love IceCreams!");
