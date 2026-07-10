@@ -29,8 +29,6 @@ class ObjectRepository {
         this.summaryID = page.locator(".col-text");
 
 
-
-        
         // Practice page locators - getByLabel
         this.checkIceCreamCheckbox = page.getByLabel("Check me out if you Love IceCreams!");
         this.employedRadioButton = page.getByLabel("Employed");
