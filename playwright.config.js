@@ -22,6 +22,8 @@ module.exports = defineConfig({
     browserName: 'chromium',
 
     // Run headless in Jenkins
-    headless: true,
+    headless: false,
+    screenshot : 'on',
+    trace : 'on',
   },
 });

@@ -1,12 +1,12 @@
 const {test, expect} = require("@playwright/test");
-const { ObjectRepository } = require("../wrapperFunction/objectRepository");
+const { UIBasictestObjectRepository } = require("../wrapperFunction/UIBasictest.spec");
 
 test('First Playwright test', async ({browser})=>
 { 
     //playwright code -
     const context =  await browser.newContext();
     const page = await context.newPage();
-    const repo = new ObjectRepository(page);
+    const repo = new UIBasictestObjectRepository(page);
 
     await repo.gotoPractice();
     console.log(await page.title());
@@ -55,7 +55,7 @@ test('Child Window Handling', async ({browser})=>
 {
     const context = await browser.newContext();
     const page = await context.newPage();
-    const repo = new ObjectRepository(page);
+    const repo = new UIBasictestObjectRepository(page);
     await repo.gotoPractice();
 
 

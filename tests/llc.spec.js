@@ -1,12 +1,10 @@
-const {test, expect} = require("@playwright/test");
-const { ObjectRepository } = require("../wrapperFunction/objectRepository");
+const { test } = require("@playwright/test");
+const { LlcObjectRepository } = require("../wrapperFunction/llc.spec");
 
-test('Playwright Special Locators', async ({browser})=>
-{ 
-    //playwright code -
-    const context =  await browser.newContext();
+test('Playwright Special Locators', async ({ browser }) => {
+    const context = await browser.newContext();
     const page = await context.newPage();
-    const repo = new ObjectRepository(page);
+    const repo = new LlcObjectRepository(page);
 
     await repo.gotoAngularPractice();
     console.log(await page.title());
@@ -19,8 +17,4 @@ test('Playwright Special Locators', async ({browser})=>
     await repo.submitMsg.isVisible();
     await repo.shopLink.click();
     await repo.cardTitlesAddButton.click();
-
-
-
-
 });

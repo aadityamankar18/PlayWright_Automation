@@ -1,12 +1,12 @@
 const {test, expect} = require("@playwright/test");
-const { ObjectRepository } = require("../wrapperFunction/objectRepository");
+const { ClientAppE2EObjectRepository } = require("../wrapperFunction/ClientApp_E2E.spec");
 
 test('First Playwright test', async ({browser})=>
 { 
     //playwright code -
     const context =  await browser.newContext();
     const page = await context.newPage();
-    const repo = new ObjectRepository(page);
+    const repo = new ClientAppE2EObjectRepository(page);
     const productName = "ZARA COAT 3";
 
     await repo.gotoClient();
